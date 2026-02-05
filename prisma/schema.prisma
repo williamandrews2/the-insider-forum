@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstName String
+  lastName String
+  username String @unique
+  password String
+  membershipStatus Boolean @default(false)
+  messages Message[]
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id Int @id @default(autoincrement())
+  title String
+  text String
+  timeStamp DateTime @default(now())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+} // [userId] is the FK here, referencing the id (PK) in the User model
+  // this tells Prisma how to fetch the related User object.
