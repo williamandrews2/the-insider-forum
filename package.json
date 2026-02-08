@@ -18,11 +18,9 @@
     "url": "https://github.com/williamandrews2/the-insider-forum/issues"
   },
   "homepage": "https://github.com/williamandrews2/the-insider-forum#readme",
-  "devDependencies": {
-    "prisma": "^6.19.2"
-  },
   "dependencies": {
     "@prisma/client": "^7.3.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "prisma": "^7.3.0"
   }
 }
