@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Insider Forum</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        text-align: center;
+        background: white;
+        padding: 60px 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 2.5em;
+      }
+      p {
+        color: #666;
+        margin-bottom: 40px;
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+      .button-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      }
+      a {
+        display: inline-block;
+        padding: 12px 30px;
+        margin: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1em;
+        transition: all 0.3s ease;
+      }
+      .btn-signup {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      .btn-signup:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      .btn-login {
+        background: #f0f0f0;
+        color: #333;
+        border: 2px solid #667eea;
+      }
+      .btn-login:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>
+        Join our community to connect with others, share insights, and stay
+        informed on the latest updates.
+      </p>
+      <div class="button-group">
+        <a href="/signup" class="btn-signup">Sign Up</a>
+        <a href="/login" class="btn-login">Login</a>
+      </div>
+    </div>
+  </body>
+</html>
