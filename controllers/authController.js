@@ -8,7 +8,35 @@ exports.signupGet = (req, res) => {
 
 exports.signupPost = async (req, res) => {
   try {
-    const { firstName, lastName, username, password } = req.body;
+    const { firstName, lastName, username, password, confirmPassword } =
+      req.body;
+
+    // validation
+    const errors = [];
+
+    if (!firstName || !lastName || !username || !password || !confirmPassword) {
+      errors.push("All fields are required");
+    }
+
+    if (password !== confirmPassword) {
+      errors.push("The passwords do not match");
+    }
+
+    if (password && password.length < 6) {
+      errors.push("Password must be at least 6 characters");
+    }
+
+    // re-render the form prefilled
+    if (errors.length > 0) {
+      return res.render("signup", {
+        errors,
+        firstName,
+        lastName,
+        username,
+      });
+    }
+
+    // hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // inserting into db
