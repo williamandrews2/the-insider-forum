@@ -1,6 +1,7 @@
 const prisma = require("../prisma/prismaClient");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 // GET sign up on sign up page
 exports.signupGet = (req, res) => {
@@ -78,3 +79,13 @@ exports.loginPost = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/",
 });
+
+// GET logout the user
+exports.logoutGet = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
