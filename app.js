@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 // port variable
 const PORT = process.env.PORT || 3030;
 
-// make the user variable available to all views
+// locals object used to make the user variable
+// available to all views
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();

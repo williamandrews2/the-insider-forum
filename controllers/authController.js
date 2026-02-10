@@ -58,3 +58,11 @@ exports.signupPost = async (req, res) => {
     res.render("signup", { error: "Error creating account" });
   }
 };
+
+// GET login the user
+exports.loginGet = async (req, res) => {
+  res.render("login");
+};
+
+// POST login the user
+exports.loginPost = async (req, res) => {};

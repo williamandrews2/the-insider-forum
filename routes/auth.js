@@ -8,4 +8,10 @@ authRouter.get("/signup", authController.signupGet);
 // POST sign up
 authRouter.post("/signup", authController.signupPost);
 
+// GET login
+authRouter.get("/login", authController.loginGet);
+
+// POST login
+authRouter.post("/login", authController.loginPost);
+
 module.exports = authRouter;
