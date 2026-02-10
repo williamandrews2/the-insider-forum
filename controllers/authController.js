@@ -14,6 +14,14 @@ exports.signupPost = async (req, res) => {
     // validation
     const errors = [];
 
+    const usernameCheck = await prisma.user.findUnique({
+      where: { username: username },
+    });
+
+    if (usernameCheck) {
+      errors.push("That username is taken! Please try another username");
+    }
+
     if (!firstName || !lastName || !username || !password || !confirmPassword) {
       errors.push("All fields are required");
     }
