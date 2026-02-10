@@ -1,5 +1,6 @@
 const prisma = require("../prisma/prismaClient");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 // GET sign up on sign up page
 exports.signupGet = (req, res) => {
@@ -73,4 +74,7 @@ exports.loginGet = async (req, res) => {
 };
 
 // POST login the user
-exports.loginPost = async (req, res) => {};
+exports.loginPost = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/",
+});
