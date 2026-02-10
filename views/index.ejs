@@ -74,15 +74,28 @@
   </head>
   <body>
     <div class="container">
-      <h1>Welcome!</h1>
-      <p>
-        Join our community to connect with others, share insights, and stay
-        informed on the latest updates.
-      </p>
-      <div class="button-group">
-        <a href="/signup" class="btn-signup">Sign Up</a>
-        <a href="/login" class="btn-login">Login</a>
-      </div>
+      <h1>Welcome to The Insider's Forum!</h1>
+      <% if (user) { %>
+  <!-- Logged in view -->
+  <p>Hello, <%= user.firstName %>!</p>
+  <p>You are currently logged in.</p>
+  
+  <% if (user.membershipStatus) { %>
+    <p>✓ You are a member of the club!</p>
+  <% } else { %>
+    <p>Want to join the secret club? <a href="/join-club">Enter the passcode</a></p>
+  <% } %>
+  
+  <a href="/messages">View Messages</a>
+  <a href="/messages/new">Create New Message</a>
+  
+<% } else { %>
+  <!-- Not logged in view -->
+  <p>A secret message board for members only.</p>
+  <a href="/signup" class="btn-signup">Sign Up</a>
+  <a href="/login" class="btn-login">Log In</a>
+  <a href="/messages">View Messages</a>
+<% } %>
     </div>
   </body>
 </html>
