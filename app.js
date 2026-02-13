@@ -27,11 +27,11 @@ app.use((req, res, next) => {
 // route variables
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
-// const messagesRouter = require("./routes/messages");
+const messagesRouter = require("./routes/messages");
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
-// app.use("/messages", messagesRouter);
+app.use("/messages", messagesRouter);
 
 // starting the server
 app.listen(PORT, (error) => {

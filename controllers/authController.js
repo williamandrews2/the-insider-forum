@@ -56,13 +56,10 @@ exports.signupPost = async (req, res) => {
         lastName: lastName,
         username: username,
         password: hashedPassword,
-        membershipStatus: false, // default value,
-        // might need to change this to true in the future since
-        // they are signing up
+        membershipStatus: false,
       },
     });
-    // TODO: Change this to redirect to the login page
-    res.redirect("/");
+    res.redirect("/login");
   } catch (error) {
     console.error(error);
     res.render("signup", { error: "Error creating account" });
