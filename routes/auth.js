@@ -17,4 +17,7 @@ authRouter.post("/login", authController.loginPost);
 // GET logout
 authRouter.get("/logout", authController.logoutGet);
 
+// GET join club (membership)
+authRouter.get("/join-club", authController.joinClubGet);
+
 module.exports = authRouter;

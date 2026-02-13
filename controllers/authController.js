@@ -89,3 +89,8 @@ exports.logoutGet = (req, res, next) => {
     res.redirect("/");
   });
 };
+
+// GET to join the club (membership)
+exports.joinClubGet = (req, res) => {
+  res.redirect("/construction");
+};
