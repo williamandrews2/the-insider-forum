@@ -89,5 +89,28 @@ exports.logoutGet = (req, res, next) => {
 
 // GET to join the club (membership)
 exports.joinClubGet = (req, res) => {
-  res.redirect("/construction");
+  res.render("join");
+};
+
+// POST to join the club
+exports.joinClubPost = async (req, res) => {
+  try {
+    const { code } = req.body;
+
+    // verify code is correct:
+    if (code !== process.env.SECRET_CODE) {
+      return res.render("join", { error: "Incorrect code. Try again." });
+    }
+
+    // update the user to become a member
+    await prisma.user.update({
+      where: { id: req.user.id },
+      data: { membershipStatus: true },
+    });
+
+    res.redirect("/messages");
+  } catch (error) {
+    console.error(error);
+    res.render("join", { error: "Error updating membership" });
+  }
 };

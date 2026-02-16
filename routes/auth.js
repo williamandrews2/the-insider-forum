@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const authRouter = Router();
 const authController = require("../controllers/authController");
+const { isAuthenticated } = require("../middleware/auth");
+const { authenticate } = require("passport");
 
 // GET sign up
 authRouter.get("/signup", authController.signupGet);
@@ -18,6 +20,9 @@ authRouter.post("/login", authController.loginPost);
 authRouter.get("/logout", authController.logoutGet);
 
 // GET join club (membership)
-authRouter.get("/join-club", authController.joinClubGet);
+authRouter.get("/join", isAuthenticated, authController.joinClubGet);
+
+// POST join club
+authRouter.post("/join", isAuthenticated, authController.joinClubPost);
 
 module.exports = authRouter;
