@@ -23,9 +23,29 @@ exports.messagesNewPost = async (req, res) => {
         userId: req.user.id,
       },
     });
+
     res.redirect("/messages");
   } catch (error) {
     console.error(error);
     res.render("new-message", { error: "Error creating this message" });
+  }
+};
+
+// GET show all messages
+exports.messagesGet = async (req, res) => {
+  try {
+    const messages = await prisma.message.findMany({
+      include: {
+        user: true,
+      },
+      orderBy: {
+        timeStamp: "desc",
+      },
+    });
+
+    res.render("messages", { messages });
+  } catch (error) {
+    console.error(error);
+    res.render("messages", { messages: [], error: "Error loading messages" });
   }
 };

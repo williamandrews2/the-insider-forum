@@ -1,0 +1,58 @@
+<%- include('partials/header') %>
+
+<style>
+  :root{--bg:#f8fafc;--card:#ffffff;--accent:#6366f1;--muted:#64748b}
+  body{background:var(--bg)}
+  .wrap{max-width:1000px;margin:28px auto;padding:0 20px}
+  h1{font-size:1.6rem;margin:8px 0 18px;color:#0f172a}
+  .top-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+  .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+  .error{background:#fff6f6;border:1px solid #fed7d7;color:#7f1d1d;padding:10px;border-radius:8px}
+  .empty{color:var(--muted);padding:18px;background:#fff;border-radius:8px}
+  .messages{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .message-card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 8px 20px rgba(2,6,23,0.06)}
+  .message-card h3{margin:0 0 8px;font-size:1.05rem;color:#0b1220}
+  .message-card p{margin:0 0 12px;color:#374151}
+  .message-meta{display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;color:var(--muted)}
+  .timestamp{font-style:italic}
+  @media (max-width:780px){.messages{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+  <h1>Messages</h1>
+
+  <div class="top-actions">
+    <% if (user) { %>
+      <a class="btn" href="/messages/new">Create New Message</a>
+    <% } else { %>
+      <div></div>
+    <% } %>
+    <% if (locals.error) { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+  </div>
+
+  <% if (messages.length === 0) { %>
+    <div class="empty">No messages yet. Be the first to post!</div>
+  <% } else { %>
+    <div class="messages">
+      <% messages.forEach(message => { %>
+        <div class="message-card">
+          <h3><%= message.title %></h3>
+          <p><%= message.text %></p>
+
+          <div class="message-meta">
+            <% if (user && user.membershipStatus) { %>
+              <span>By: <%= message.user.firstName %> <%= message.user.lastName %></span>
+            <% } else { %>
+              <span>By: Anonymous</span>
+            <% } %>
+            <span class="timestamp"><%= new Date(message.timeStamp).toLocaleDateString() %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>
