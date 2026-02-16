@@ -47,7 +47,9 @@
             <% } else { %>
               <span>By: Anonymous</span>
             <% } %>
-            <span class="timestamp"><%= new Date(message.timeStamp).toLocaleDateString() %></span>
+            <% if (user) { %>
+                <span class="timestamp"><%= new Date(message.timeStamp).toLocaleDateString() %></span>
+            <% } %>
           </div>
         </div>
       <% }) %>
