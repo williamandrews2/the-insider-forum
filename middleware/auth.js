@@ -6,4 +6,10 @@ exports.isAuthenticated = (req, res, next) => {
   res.redirect("/login");
 };
 
-// TODO: add middlware here for checking if a user is a member
+// check if a user is an admin
+exports.isAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    return next();
+  }
+  res.status(403).send("Forbidden: Admin access required.");
+};
