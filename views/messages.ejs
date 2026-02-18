@@ -6,7 +6,7 @@
   .wrap{max-width:1000px;margin:28px auto;padding:0 20px}
   h1{font-size:1.6rem;margin:8px 0 18px;color:#0f172a}
   .top-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
-  .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600}
+  .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;cursor: pointer;}
   .error{background:#fff6f6;border:1px solid #fed7d7;color:#7f1d1d;padding:10px;border-radius:8px}
   .empty{color:var(--muted);padding:18px;background:#fff;border-radius:8px}
   .messages{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -50,6 +50,11 @@
             <% if (user) { %>
                 <span class="timestamp"><%= new Date(message.timeStamp).toLocaleDateString() %></span>
             <% } %>
+            <% if (user && user.isAdmin) { %>
+            <form action="/messages/<%= message.id %>/delete" method="POST" style="display:inline">
+                <button class="btn" type="submit" onclick="return confirm('Delete this message?')">Delete</button>
+            </form>
+      <% } %>
           </div>
         </div>
       <% }) %>
