@@ -59,7 +59,14 @@ exports.signupPost = async (req, res) => {
         membershipStatus: false,
       },
     });
-    res.redirect("/login");
+
+    // Log the user in automatically
+    req.login(newUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
   } catch (error) {
     console.error(error);
     res.render("signup", { error: "Error creating account" });
