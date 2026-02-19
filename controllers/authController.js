@@ -108,9 +108,14 @@ exports.joinClubPost = async (req, res) => {
       data: { membershipStatus: true },
     });
 
-    res.redirect("/messages");
+    res.redirect("/joined");
   } catch (error) {
     console.error(error);
     res.render("join", { error: "Error updating membership" });
   }
+};
+
+// GET joined club
+exports.joinedClubGet = (req, res) => {
+  res.render("joined");
 };

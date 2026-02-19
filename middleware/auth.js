@@ -6,6 +6,14 @@ exports.isAuthenticated = (req, res, next) => {
   res.redirect("/login");
 };
 
+// check if a user is a member
+exports.isMember = (req, res, next) => {
+  if (req.user && req.user.membershipStatus) {
+    return next();
+  }
+  res.redirect("/messages");
+};
+
 // check if a user is an admin
 exports.isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
