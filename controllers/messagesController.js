@@ -38,12 +38,6 @@ exports.messagesGet = async (req, res) => {
       },
     });
 
-    // testing
-    const testUser = await prisma.user.findUnique({
-      where: { id: 1 }, // or whatever your user ID is
-    });
-    console.log("Direct query result:", testUser);
-
     res.render("messages", { messages });
   } catch (error) {
     console.error(error);

@@ -74,7 +74,7 @@ exports.loginGet = async (req, res) => {
 // POST login the user
 exports.loginPost = passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/",
+  failureRedirect: "/login",
 });
 
 // GET logout the user
