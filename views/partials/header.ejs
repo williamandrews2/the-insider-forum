@@ -1,0 +1,41 @@
+<style>
+	header {
+		background: #222;
+		color: #fff;
+		margin-bottom: 2rem;
+	}
+	nav ul {
+		list-style: none;
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+		padding: 1rem 2rem;
+		margin: 0;
+	}
+	nav ul li a {
+		color: #fff;
+		text-decoration: none;
+		font-weight: 500;
+		padding: 0.3rem 0.8rem;
+		border-radius: 4px;
+		transition: background 0.2s;
+	}
+	nav ul li a:hover {
+		background: #444;
+	}
+</style>
+<header>
+	<nav>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<% if (typeof user !== 'undefined' && user) { %>
+				<li><a href="/logout">Logout</a></li>
+				<% if (user.membershipStatus === false) { %>
+					<li><a href="/join">Join</a></li>
+				<% } %>
+			<% } else { %>
+				<li><a href="/login">Login</a></li>
+            <% } %>
+		</ul>
+	</nav>
+</header>
